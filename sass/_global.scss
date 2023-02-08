@@ -1,0 +1,421 @@
+/* fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap');
+
+/* vars */
+$primary: #ffb43a;
+$secondary: #272833;
+$tertiary: #1c1c27;
+$quaternary: #e94141;
+$quinary: #fcfcfc;
+
+$transitionCubicBezier: all 0.4s cubic-bezier(0.42, 0, 0.01, 1.03);
+
+.bgPrimary {
+    background-color: $primary !important;
+}
+.bgSecondary {
+    background-color: $secondary;
+
+    &_300 {
+        background-color: lighten($color: $secondary, $amount: 90%);
+    }
+}
+.bgTertiary {
+    background-color: $tertiary;
+
+    &_600 {
+        background-color: darken($color: $tertiary, $amount: 2%);
+    }
+}
+.bgQuaternary {
+    background-color: $quaternary;
+
+    &_300 {
+        background-color: lighten($color: $quaternary, $amount: 3.5%);
+    }
+}
+
+.colorPrimary {
+    color: $primary;
+}
+.colorSecondary {
+    color: $secondary;
+}
+
+.colorTertiary {
+    color: $tertiary;
+}
+
+
+.bg-none {
+    background-color: transparent;
+}
+
+.bgDanger {
+    background-color: $quaternary;;
+}
+
+.textDanger {
+    color: $quaternary;;
+}
+
+
+
+$transitionCubicBezier: all 0.4s cubic-bezier(0.42, 0, 0.01, 1.03);
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #212528;
+    font-weight: 400;
+    color: white;
+}
+
+.border-bg {
+    border-color: #212528;
+}
+.border-placeholder {
+    border-color: #2b2f33;
+}
+
+.bg-body {
+    background-color: #212528;
+}
+.bg-placeholder {
+    background-color: #2b2f33;
+}
+
+input {
+    outline: none;
+}
+
+.list {
+    &__item {
+        background-color: $secondary;
+
+        input {
+            outline: none;
+            background-color: transparent;
+            width: 100%;
+            /* border: 0; */
+        }
+
+        button {
+            width: 20px;
+            height: 20px;
+        }
+
+        &__check {
+            border: 1px solid $primary;
+            background-color: $tertiary;
+
+            &::after {
+                content: "";
+                position: absolute;
+                display: block;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-size: 12px;
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+        }
+
+        &__delete {
+            border: 1px solid $quaternary;
+            background-color: $quaternary;
+        }
+
+        &__edit {
+            border: 1px solid $tertiary;
+            background-color: $tertiary;
+            transition: $transitionCubicBezier;
+
+            span {
+                position: absolute;
+                background-color: white;
+                top: 6px;
+                right: 0;
+                margin: 0 auto;
+                left: 0;
+                width: 4px;
+                height: 6px;
+                transform-origin: center;
+                transform: rotate(25deg);
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    display: block;
+                    top: -4px;
+                    left: 0;
+                    background-color: white;
+                    right: 0;
+                    margin: 0 auto;
+                    width: 4px;
+                    height: 3px;
+                    border-radius: 3px 3px 0 0;
+                }
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    display: block;
+                    bottom: -4px;
+                    left: 0px;
+                    background-color: rgba(0,0,0,0);
+                    right: 0;
+                    margin: 0 auto;
+                    width: 0;
+                    height: 0;
+                    border-left: 2px solid rgba(0,0,0,0);
+                    border-right: 2px solid rgba(0,0,0,0);
+                    border-top: 2px solid white;
+                }
+            }
+
+            &.onEdit {
+                border-color: $primary;
+                transform: scale(.9);
+            }
+        }
+    }
+}
+
+.is-checked {
+    .list__item__check {
+        &::after {
+            /* background-image: url("../../public/img/checkmark.svg"); */
+        }
+    }
+
+    p {
+        input {
+            text-decoration: line-through;
+        }
+    }
+}
+
+.cta {
+    input {
+        background-color: $secondary;
+        border: 1px solid $primary;
+
+        &::placeholder {
+            color: white;
+        }
+    }
+
+    button {
+        background-color: $primary;
+        width: 30px;
+        height: 30px;
+    }
+}
+
+
+.fadescaleIn {
+    animation-name: fadescaleIn;
+    animation-duration: .5s;
+}
+
+.fadescaleOut {
+    animation-name: fadescaleOut;
+    animation-duration: .2s;
+}
+
+.fadeInFromLeft {
+    animation-name: fadeInFromLeft;
+    animation-duration: .2s;
+    opacity: 1; transform: translateX(0)
+}
+
+@keyframes fadescaleIn {
+    from {opacity: 0; transform: scale(.9);}
+    to {opacity: 1; transform: scale(1);}
+}
+@keyframes fadescaleOut {
+    from {opacity: 1; transform: scale(1);}
+    to {opacity: 0; transform: scale(.9);}
+}
+@keyframes fadeInFromLeft {
+    from {opacity: 0; transform: translateX(-1rem)}
+    to {opacity: 1; transform: translateX(0)}
+}
+
+.blink {
+    animation: blinking 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes blinking {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: .5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.leftRightRotate {
+    animation: leftRightRotate 1s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes leftRightRotate {
+    0% {
+        transform: rotate(-10deg);
+    }
+    50% {
+        transform: rotate(10deg);
+    }
+    100% {
+        transform: rotate(-10deg);
+    }
+}
+
+.fadeInFromRight {
+    animation-name: fadeInFromRight;
+    animation-duration: .2s;
+    transform: translateX(0)
+}
+
+@keyframes fadeInFromRight {
+    from {opacity: 0; transform: translateX(.8rem);}
+    to {opacity: 1; transform: translateX(0);}
+}
+
+.my-masonry-grid {
+    display: flex;
+    margin-left: -30px; /* gutter size offset */
+    width: auto;
+  }
+.my-masonry-grid_column {
+    padding-left: 30px; /* gutter size */
+    background-clip: padding-box;
+}
+
+/* Style your items */
+.my-masonry-grid_column > .masonry-child { /* change div to reference your elements you put in <Masonry> */
+    margin-bottom: 30px;
+}
+
+.dateAndTimePicker {
+    width: 11rem;
+    input {
+        &.form-control {
+            color: #ffb43a;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+            background-color: #2b2f33;
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+            border-radius: 0.25rem;
+            margin-left: 0.25rem;
+            width: 100%;
+            text-align: center;
+        }
+    }
+
+    .rdtPicker {
+        border-radius: 1rem;
+        background-color: #2b2f33;
+        border: 1px solid #4b5563;
+
+        .rdtDay.rdtToday {
+            background-color: $primary;
+            color: $secondary;
+            font-weight: bold;
+
+            &:hover {
+                background-color: $primary;
+                color: $secondary;
+            }
+        }
+    }
+
+    .rdtPicker td.rdtDay:hover, 
+    .rdtPicker td.rdtHour:hover, 
+    .rdtPicker td.rdtMinute:hover, 
+    .rdtPicker td.rdtSecond:hover, 
+    .rdtPicker .rdtTimeToggle:hover, 
+    .rdtCounter .rdtBtn:hover, 
+    .rdtPicker thead tr:first-of-type th:hover {
+        background-color: #212528;
+    }
+
+    &_date {
+        input {
+            &.form-control {
+                color:  white;
+            }
+        }
+    }
+
+    &_up {
+        .rdtPicker {
+            bottom: 2.5rem;
+        }
+    }
+
+    &_w-full {
+        width: 100%;
+    }
+}
+
+.showNote {
+
+    a {
+        color: rgb(52, 112, 180);
+    }
+
+    .ql-editor {
+        padding: 0;
+        font-family: "Poppins" !important;
+        
+        p {
+            font-size: .8rem !important;
+        }
+
+        ul, ol {
+            padding-left: 0;
+        }
+    }
+
+    .ql-tooltip {
+        display: none;
+    }
+
+    .ql-toolbar.ql-snow {
+        border-color: #2b2f33;
+    }
+}
+
+.editorNote {
+    a {
+        color: rgb(52, 112, 180);
+    }
+
+    .ql-editor {
+        font-family: "Poppins" !important;
+        
+        p {
+            font-size: .8rem !important;
+        }
+    }
+
+    .ql-toolbar.ql-snow, 
+    .ql-container.ql-snow {
+        border-color: #2b2f33;
+    }
+}
+
+.dateInputBgTransparent {
+    input.form-control {
+        background-color: #212528;
+    }
+}
